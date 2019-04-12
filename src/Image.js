@@ -20,4 +20,10 @@ class Image {
         return this.div
     }
 
+    renderMyImage(){
+        const imageContainer = document.querySelector("#image_container")
+        let myImageCard = this.render()
+        imageContainer.append(myImageCard)
+    }
+
 }
