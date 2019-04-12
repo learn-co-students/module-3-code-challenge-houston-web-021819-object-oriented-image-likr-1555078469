@@ -9,7 +9,7 @@
      }
 
      static render =img=>{
-       console.log(img.comments.length)
+       //console.log(img.comments.length)
         img.comments.forEach(comment=>{
             new Comment(comment.image_id, comment.content) //instantiate each comment
        })
