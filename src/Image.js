@@ -2,7 +2,8 @@ class Image {
 
     constructor(url, name){
         this.div = document.createElement('div')
-        this.div.className = 'image_card'
+        this.div.className = 'image_card'   
+        const picPlace = document.querySelector('#image_container')
 
         const img = document.createElement('img')
         img.src = url
@@ -14,6 +15,7 @@ class Image {
             img,
             h4
         )
+        picPlace.append(this.div)
     }
 
     render(){
