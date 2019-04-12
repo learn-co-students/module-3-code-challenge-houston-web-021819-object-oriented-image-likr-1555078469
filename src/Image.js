@@ -1,8 +1,15 @@
 class Image {
 
     constructor(url, name){
-        this.div = document.createElement('div')
-        this.div.className = 'image_card'
+        this.url = url;
+        this.name = name;  
+    }
+
+
+    static renderImage(url, name){
+        const imageContainer = document.querySelector("#image_container");
+        const div = document.createElement('div')
+        div.className = 'image_card'
 
         const img = document.createElement('img')
         img.src = url
@@ -10,14 +17,11 @@ class Image {
         const h4 = document.createElement('h4')
         h4.append(name)
 
-        this.div.append(
+        div.append(
             img,
             h4
-        )
-    }
-
-    render(){
-        return this.div
+         )
+        imageContainer.append(div)
     }
 
 }
