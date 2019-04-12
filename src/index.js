@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const commentsList = document.getElementById("comments");
 
-  const getImage = function() {
+  const getContent = function() {
     fetch(imageURL)
       .then(resp => {
         return resp.json();
@@ -52,5 +52,5 @@ document.addEventListener("DOMContentLoaded", () => {
     commentInput.value = "";
   });
 
-  getImage();
+  getContent();
 });
