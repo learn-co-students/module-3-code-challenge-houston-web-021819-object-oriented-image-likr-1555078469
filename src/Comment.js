@@ -8,7 +8,7 @@ class Comment {
         let commentsBoard = document.querySelector('#comments')
         let newComment = document.createElement('li')
         newComment.innerText = comment.text
-        commentsBoard.append(newComment)
+        commentsBoard.prepend(newComment)
     }
 
     //save comment then, after successful save, create new instance and post

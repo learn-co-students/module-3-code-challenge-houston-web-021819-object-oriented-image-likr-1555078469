@@ -13,7 +13,7 @@ class Image {
         img.src = image.url
         const h4 = document.createElement('h4')
         h4.append(image.name)
-        div.append(img, h4)
+        div.append(h4, img)
         let board = document.querySelector('#image_container')
         board.append(div)
     }
