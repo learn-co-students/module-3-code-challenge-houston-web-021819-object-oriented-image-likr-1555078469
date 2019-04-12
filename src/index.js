@@ -15,7 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(pic)
     let bigPic = new Image(pic.url,pic.name)
     picPlace.append(bigPic.div)
+    let comm =pic.comments
+    console.log(comm)
+    comm.forEach(element => {
+      let firstComm = new Comment(element.content) 
+    });
   })
-
 
 })
