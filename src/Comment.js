@@ -29,9 +29,6 @@ class Comment{
         }).then(res=> res.json())
         .then(function(comment){
             new Comment(comment.content);
-            //renderComment(comment.content);
-            //console.log(comment.content)
-            
         })
    
 }

@@ -7,35 +7,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const commentsURL = `https://randopic.herokuapp.com/comments/`
 
+  
+  //code to fetch the image from the server
+
   fetch(`https://randopic.herokuapp.com/images/${imageId}`)
     .then(res => res.json())
     .then(function(image){
-      //console.log(image);
-      new Image(image.url, image.name);
-      Image.renderImage(image.url, image.name);
-      //renderNewImageForm();
-      //not required in deliverable
-      image.comments.forEach(function(comment){
-        new Comment(comment.content);
-        Comment.renderComment(comment.content);
-        //renderNewCommentForm();
-        //already exist in index.html
-      })
+        //console.log(image);
+        new Image(image.url, image.name);
+        Image.renderImage(image.url, image.name);
+        //renderNewImageForm();
+        
+        image.comments.forEach(function(comment){
+            new Comment(comment.content);
+            Comment.renderComment(comment.content);
+            //renderNewCommentForm();
+            //already new comment form exists in index.html
+        })
     })
 
     
 })
 
+//Adding event listener to the the commentform
 const commentForm = document.querySelector("#comment_form");
 const commentInput = document.querySelector("#comment_input");
 commentForm.addEventListener('submit', (e)=>{
   e.preventDefault();
-
   Comment.create(commentInput.value);
   Comment.renderComment(commentInput.value);
 })
 
-//No need to execute beccause we dont have to create new image
+//No need to execute this function because we dont have to create a new image
 function renderNewImageForm(){
   const imageContainer = document.querySelector("#image_container");
   const form = document.createElement('form');
