@@ -1,5 +1,5 @@
 class Comment {
-    constructor(text, commentsURL, imageURL){
+    constructor(text){
         this.text = text
         this.renderComment(this)
     }
@@ -11,7 +11,7 @@ class Comment {
         commentsBoard.append(newComment)
     }
 
-    //save comment then, after succesful save, create new instance and post
+    //save comment then, after successful save, create new instance and post
     static commentSave(commentsURL, text){
         fetch(commentsURL, {
             method: 'POST',
@@ -24,9 +24,7 @@ class Comment {
                 content: text
             })
         })
-        .then(function(res){
-            let comment = new Comment(text)
-        })
+        .then( new Comment(text) )
     }
 
 }

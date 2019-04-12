@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //set up the event listener for new comment
   let commentForm = document.querySelector('#comment_form')
   let commentInput = document.querySelector('#comment_input')
-  commentForm.addEventListener('submit', function(e){
-    e.preventDefault()
-    Comment.commentSave(commentsURL, commentInput.value)
+  commentForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    (commentInput.value != "") ? Comment.commentSave(commentsURL, commentInput.value) : null
     commentInput.value = ""
   })
 
