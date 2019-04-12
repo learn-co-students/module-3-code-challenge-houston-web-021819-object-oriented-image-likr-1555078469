@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   .then((res)=> res.json())
   .then((imageData) => {
     let myImage = new Image(imageData.url, imageData.name)
-    myImage.renderMyImage()  //use Image instance method to render myImage.
-    Comment.renderComments()  //use Comment static method to render comments for my image
+    myImage.renderMyImage()  //call Image instance method to render myImage.
+    Comment.renderComments()  //call Comment static method to render comments for my image
     })
 
   //add action for form.
@@ -17,8 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const input = document.querySelector("#comment_input")
   form.addEventListener('submit', function(e){
     e.preventDefault()
-    let newComment = new Comment(input.value)
-    newComment.addComment() //use Comment instance method to send newComment to server, add HTML element
+    let newComment = new Comment(input.value);
+    newComment.addComment(); //use Comment instance method to send newComment to server, add HTML element
+    input.value = ""; //clear input box after submitting
   })
    
 })
