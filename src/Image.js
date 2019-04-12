@@ -11,12 +11,14 @@ class Image {
         h4.append(name)
 
         this.div.append(
-            img,
+            img, 
             h4
         )
+        const imgContainer = document.querySelector('#image_container')
+        imgContainer.appendChild(this.div)
     }
-
-    render(){
+    // instance method
+    render(){   
         return this.div
     }
 
