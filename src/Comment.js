@@ -1,38 +1,34 @@
 class Comment {
-    constructor(comment) {
-        this.comment = comment
-        this.image = "https://randopic.herokuapp.com/images/2432"
+  constructor(comment) {
+    this.comment = comment
 
-        const commentsSection = document.querySelector('#comments')
-        
-        const commentItem = document.createElement('li')
-        commentItem.innerText = comment.content
+    const commentsSection = document.querySelector('#comments')
 
-        commentsSection.append(commentItem)
+    const commentItem = document.createElement('li')
+    commentItem.innerText = comment.content
 
-    }
+    commentsSection.append(commentItem)
+  }
 
-    static createComment(comment) {
-        comment = this.comment
+  static createComment(comment) {
 
-        console.log("hello")
-        fetch("https://randopic.herokuapp.com/comments", {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                image_id: comment.image_id,
-                content: comment.content
-            })
+    fetch("https://randopic.herokuapp.com/comments", {
+        method: "POST",
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+        image_id: imageId,
+        content: comment.content
         })
-        .then(function(response){
-            return response.json()
-        })
-        .then(function(response){
-            new Comment(response)
-        })
+    })
+    .then(function (response) {
+        return response.json()
+    })
+    .then(function (response) {
+        new Comment(response)
+    })
     }
 
 }

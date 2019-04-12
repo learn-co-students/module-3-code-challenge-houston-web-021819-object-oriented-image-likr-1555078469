@@ -6,23 +6,19 @@ class Image {
         this.div.className = 'image_card'
 
         const img = document.createElement('img')
-        img.src = "http://blog.flatironschool.com/wp-content/uploads/2017/06/IMAG2936-352x200.jpg"
+        img.src = image.url
 
         const h4 = document.createElement('h4')
-        h4.append("Science Fair")
+        h4.append(image.name)
 
         this.div.append(
             img,
             h4
         )
-
-        const imageContainer = document.querySelector('#image_container')
-        imageContainer.append(this.div)
     }
 
     render(){
-        return this.div
+        const imageContainer = document.querySelector('#image_container')
+        imageContainer.append(this.div)
     }
-
-
 }
