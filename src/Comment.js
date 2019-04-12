@@ -5,5 +5,6 @@ class Comment{
         comment.innerText = words
         commSection.append(comment)
     }
+    
 
 }

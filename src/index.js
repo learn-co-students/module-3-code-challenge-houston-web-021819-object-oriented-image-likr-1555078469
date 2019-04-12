@@ -8,28 +8,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const commentsURL = `https://randopic.herokuapp.com/comments/`
  
-
+function createComment(image, content){
+  console.log(content)
+ fetch(commentsURL,{
+   method: 'POST',
+   headers:{
+    'Accept':'application/json',
+    'Content-Type':'application/json'
+   },
+   body:JSON.stringify({
+     image_id: image,
+     content: content
+   })
+ })
+}
 
   fetch(imageURL)
-  .then(function(res){
-    return res.json()
-  })
-  .then(function(pic){
-    const picPlace = document.querySelector('#image_container')
-    console.log(pic)
+  .then((res) =>res.json())
+  .then((pic)=>{
     let bigPic = new Image(pic.url,pic.name)
-    picPlace.append(bigPic.div)
     let comm =pic.comments
-    console.log(comm)
     comm.forEach(element => {
       let firstComm = new Comment(element.content) 
     });
   })
+
   form.addEventListener('submit',(e) => {
     e.preventDefault()
     let input = document.querySelector('#comment_input')
     let newComm = new Comment(input.value)
+    createComment(imageId,input.value)
     input.value = ''
   })
-
 })
