@@ -9,13 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const imageContainer = document.querySelector('#image_container')
 
+  const commentList = document.querySelector('#comments')
+
   fetch(imageURL)
     .then(res => res.json())
     .then(function(imageObj) {
       let myImage = new Image(imageObj.url, imageObj.name)
       imgDiv = myImage.render()
-      console.log(imgDiv)
       imageContainer.append(imgDiv)
+
+      let comments = imageObj.comments
+      comments.forEach(comment => {
+        let newComment = new Comment(comment)
+        commentLi = newComment.render()
+        commentList.append(commentLi)
+      })
     })
 })
 
