@@ -1,23 +1,39 @@
 class Image {
 
     constructor(url, name){
-        this.div = document.createElement('div')
-        this.div.className = 'image_card'
-
-        const img = document.createElement('img')
-        img.src = url
-
-        const h4 = document.createElement('h4')
-        h4.append(name)
-
-        this.div.append(
-            img,
-            h4
-        )
+        this.url = url;
+        this.name = name;
+       
     }
 
-    render(){
-        return this.div
+    
+
+    // static create(url,name){
+    //     fetch("") 
+    // }
+
+    static renderImage(url, name){
+        const imageContainer = document.querySelector("#image_container");
+         const div = document.createElement('div')
+         div.className = 'image_card'
+
+         const img = document.createElement('img')
+         img.src = url
+
+         const h4 = document.createElement('h4')
+         h4.append(name)
+
+        div.append(
+            img,
+            h4
+         )
+
+
+        imageContainer.append(div)
     }
 
 }
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    const imageContainer = document.querySelector("#image_container");
+})
