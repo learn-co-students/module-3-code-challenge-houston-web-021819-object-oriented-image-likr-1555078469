@@ -1,6 +1,9 @@
 class Image {
 
-    constructor(url, name){
+    constructor(url, name, imageContainer){
+        this.url = url
+        this.name = name
+        this.imageContainer = imageContainer
         this.div = document.createElement('div')
         this.div.className = 'image_card'
 
@@ -16,8 +19,8 @@ class Image {
         )
     }
 
-    render(){
-        return this.div
+    renderImage(){
+        this.imageContainer.append(this.div)   
     }
 
 }
