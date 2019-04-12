@@ -1,6 +1,7 @@
 class Image {
 
     constructor(url, name){
+        let image_div = document.querySelector('#image_container')
         this.div = document.createElement('div')
         this.div.className = 'image_card'
 
@@ -14,10 +15,23 @@ class Image {
             img,
             h4
         )
+        image_div.append(this.div)
+    }
+
+    static GetImage(){
+        fetch(imageURL)
+            .then(function(res){
+                return res.json();
+            })
+            .then(image => {
+                image = new Image(image.url, image.name)
+        })
     }
 
     render(){
         return this.div
     }
+
+    
 
 }
