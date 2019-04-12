@@ -12,30 +12,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const commentList = document.querySelector('#comments')
 
   fetch(imageURL)
-    .then(res => res.json())
-    .then(function(imageObj) {
-      let myImage = new Image(imageObj.url, imageObj.name)
-      imgDiv = myImage.render()
-      imageContainer.append(imgDiv)
+  .then(res => res.json())
+  .then(function(imageObj) {
+    let myImage = new Image(imageObj.url, imageObj.name)
+    imgDiv = myImage.render()
+    imageContainer.append(imgDiv)
 
-      let comments = imageObj.comments
-      comments.forEach(comment => {
-        let newComment = new Comment(comment)
-        commentLi = newComment.render()
-        commentList.append(commentLi)
-      })
+    let comments = imageObj.comments
+    comments.forEach(comment => {
+      let newComment = new Comment(comment)
+      let commentLi = newComment.render()
+      commentList.append(commentLi)
     })
-})
+  })
 
-//
-// fetch('https://randopic.herokuapp.com/comments',{
-// 	method: "POST",
-// 	body: JSON.stringify({
-// 		image_id: 2433,
-// 		content: "Commenting from the console"
-// 	}),
-// 	headers: {
-// 		'Accept': 'application/json',
-// 		'Content-Type': 'application/json'
-// 	}
-// })
+  const form = document.querySelector('#comment_form')
+  const input = document.querySelector('#comment_input')
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    let newComment = new Comment({id: 0, content: input.value})
+    let commentLi = newComment.render()
+    commentList.append(commentLi)
+    fetch('https://randopic.herokuapp.com/comments',{
+    	method: "POST",
+    	body: JSON.stringify({
+    		image_id: 2433,
+    		content: input.value
+    	}),
+    	headers: {
+    		'Accept': 'application/json',
+    		'Content-Type': 'application/json'
+    	}
+    })
+  })
+})
