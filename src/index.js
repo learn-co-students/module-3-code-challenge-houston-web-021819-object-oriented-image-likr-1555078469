@@ -7,5 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const commentsURL = `https://randopic.herokuapp.com/comments/`
 
+  fetch("https://randopic.herokuapp.com/images/2432")
+  .then(function(response){
+    return response.json()
+  })
+  .then(function(images){
+    images.forEach(function(image){
+      new Image(image)
+    })
+  })
+
 
 })
