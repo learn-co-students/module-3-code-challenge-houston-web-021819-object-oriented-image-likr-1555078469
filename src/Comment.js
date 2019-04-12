@@ -12,22 +12,11 @@ class Comment {
     return this.li
   }
 
-  static renderNewComment(commentsURL, commentList){
+  static renderNewComment(){
     const input = document.querySelector('#comment_input')
     let newComment = new Comment({id: 0, content: input.value})
     input.value = ""
-    let commentLi = newComment.render()
-    commentList.append(commentLi)
-    fetch(commentsURL,{
-    	method: "POST",
-    	body: JSON.stringify({
-    		image_id: 2433,
-    		content: newComment.content
-    	}),
-    	headers: {
-    		'Accept': 'application/json',
-    		'Content-Type': 'application/json'
-    	}
-    })
+    commentList.prepend(newComment.render())
+    APIDriver.postComment(newComment.content)
   }
 }
