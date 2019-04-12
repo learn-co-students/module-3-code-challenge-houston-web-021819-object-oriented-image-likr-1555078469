@@ -24,8 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
         newImage = new Image(imageData.url, imageData.name);
         imageContainer.append(newImage.render());
         imageData.comments.forEach(comment => {
-          newComment = new Comment(comment.content, comment.image_id);
-          commentsList.append(newComment.render());
+          if (comment.content !== "") {
+            newComment = new Comment(comment.content, comment.image_id);
+            commentsList.append(newComment.render());
+          }
         });
       });
   };
@@ -46,10 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   commentForm.addEventListener("submit", e => {
     e.preventDefault();
-    newComment = new Comment(commentInput.value, imageId);
-    commentsList.append(newComment.render());
-    persistComment(newComment);
-    commentInput.value = "";
+    if (commentInput.value !== "") {
+      newComment = new Comment(commentInput.value, imageId);
+      commentsList.append(newComment.render());
+      persistComment(newComment);
+      commentInput.value = "";
+    }
   });
 
   getContent();
