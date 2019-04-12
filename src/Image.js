@@ -3,7 +3,6 @@ class Image {
     constructor(url, name){
         this.div = document.createElement('div')
         this.div.className = 'image_card'
-
         const img = document.createElement('img')
         img.src = url
 
@@ -14,10 +13,13 @@ class Image {
             img,
             h4
         )
+        this.render(this.div)
+
     }
 
-    render(){
-        return this.div
+    render(image){
+        let board = document.querySelector('#image_container')
+        board.append(image)
     }
 
 }
