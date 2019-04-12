@@ -17,6 +17,7 @@ class Image {
         )
     }
 
+    //instance method to render an image to the page
     render(){
         const imageContainer = document.querySelector('#image_container')
         imageContainer.append(this.div)

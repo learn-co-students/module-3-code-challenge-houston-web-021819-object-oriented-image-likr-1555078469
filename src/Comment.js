@@ -10,17 +10,17 @@ class Comment {
     commentsSection.append(commentItem)
   }
 
+  //class method to create a new comment
   static createComment(comment) {
-
     fetch("https://randopic.herokuapp.com/comments", {
         method: "POST",
         headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-        image_id: imageId,
-        content: comment.content
+            image_id: imageId,
+            content: comment.content
         })
     })
     .then(function (response) {
