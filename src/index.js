@@ -7,22 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const commentsURL = `https://randopic.herokuapp.com/comments/`
 
+  //load the image and contents the first time
+  Image.retrieveImage(imageURL)
 
-  fetch(imageURL)
-  .then(function(res){
-    return res.json()
-  })
-  .then(function(result){
-    let imagePost = new Image(result.url, result.name)
-    console.log(result.comments)
-    Comment.postComments(result.comments)
-  })
-
+  //set up the event listener for new comment
   let commentForm = document.querySelector('#comment_form')
   let commentInput = document.querySelector('#comment_input')
   commentForm.addEventListener('submit', function(e){
     e.preventDefault()
-    let newComment = new Comment(commentInput.value, commentsURL)
+    Comment.commentSave(commentsURL, commentInput.value)
     commentInput.value = ""
   })
 

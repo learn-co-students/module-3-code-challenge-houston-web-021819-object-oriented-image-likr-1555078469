@@ -17,6 +17,19 @@ class Image {
         this.render(this.div)
     }
 
+    static retrieveImage(imageURL){
+        fetch(imageURL)
+        .then(function(res){
+          return res.json()
+        })
+        .then(function(result){
+          let imagePost = new Image(result.url, result.name)
+                result.comments.forEach(function(comment){
+                    let commentForPosting = new Comment(comment.content)
+                })
+        })
+    }
+
     render(image){
         let board = document.querySelector('#image_container')
         board.append(image)

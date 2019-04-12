@@ -1,19 +1,18 @@
 class Comment {
-    constructor(text, commentsURL){
+    constructor(text, commentsURL, imageURL){
         this.text = text
-        this.commentSave(commentsURL)
+        this.postComment(this)
     }
 
-    static postComments(comments){
+    postComment(comment){
         let commentsBoard = document.querySelector('#comments')
-        comments.forEach(function(comment){
-            let newComment = document.createElement('li')
-            newComment.innerText = comment.content
-            commentsBoard.append(newComment)
-        })
+        let newComment = document.createElement('li')
+        newComment.innerText = comment.text
+        commentsBoard.append(newComment)
     }
 
-    commentSave(commentsURL){
+    //save comment then, after succesful save, create new instance and post
+    static commentSave(commentsURL, text){
         console.log(commentsURL)
         fetch(commentsURL, {
             method: 'POST',
@@ -23,11 +22,13 @@ class Comment {
             },
             body: JSON.stringify({
                 image_id: 2440,
-                content: this.text
+                content: text
             })
         })
         .then(function(res){
             console.log("made it this far!")
+            console.log(res)
+            let comment = new Comment(text)
         })
     }
 
