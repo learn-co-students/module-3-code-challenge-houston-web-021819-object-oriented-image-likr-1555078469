@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const commentsURL = `https://randopic.herokuapp.com/comments/`;
 
+  const likesURL = `https://randopic.herokuapp.com/likes`;
+
   const imageContainer = document.getElementById("image_container");
 
   const commentForm = document.getElementById("comment_form");
@@ -15,14 +17,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const commentsList = document.getElementById("comments");
 
+  const addLike = function(image) {
+    fetch(likesURL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        image_id: imageId
+      })
+    });
+  };
+
+  const removeLike = function(image) {
+    fetch(likesURL, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        image_id: imageId
+      })
+    });
+  };
+
   const getContent = function() {
     fetch(imageURL)
       .then(resp => {
         return resp.json();
       })
       .then(imageData => {
-        newImage = new Image(imageData.url, imageData.name);
+        newImage = new Image(
+          imageData.url,
+          imageData.name,
+          imageData.like_count
+        );
         imageContainer.append(newImage.render());
+        const likeButton = document.getElementById("like-button");
+        const imageLikes = document.getElementById("image-likes");
+        likeButton.addEventListener("click", () => {
+          if (likeButton.textContent === `Like this image`) {
+            addLike();
+            likeButton.textContent = "You liked this image!";
+            imageLikes.textContent = `Likes - ${newImage.likes + 1}`;
+          } else {
+            removeLike();
+            likeButton.textContent = "Like this image";
+            imageLikes.textContent = `Likes - ${newImage.likes}`;
+          }
+        });
         imageData.comments.forEach(comment => {
           if (comment.content !== "") {
             newComment = new Comment(comment.content, comment.image_id);
