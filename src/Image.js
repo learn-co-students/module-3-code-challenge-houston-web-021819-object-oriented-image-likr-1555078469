@@ -17,7 +17,20 @@ class Image {
     }
 
     render(){
-        return this.div
+        Image.container.append(this.div)
     }
 
+    static create(imageURL){
+      fetch(imageURL)
+        .then(res => res.json())
+        .then(image => {
+          let newImage = new Image(image.url, image.name)
+
+          newImage.render()
+          image.comments.forEach(comment => {
+            let newComment = new Comment(comment)
+            newComment.render()
+          })
+        })
+    }
 }
