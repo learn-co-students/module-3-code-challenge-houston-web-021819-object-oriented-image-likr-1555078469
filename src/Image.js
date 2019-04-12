@@ -1,10 +1,3 @@
-//let commentForm = document.querySelector('#comment_form')
-// let commentInput = document.querySelector('#comment_input')
-// let imageId = 2436 //Enter the id from the fetched image here
-// const imageURL = `https://randopic.herokuapp.com/images/${imageId}`
-// const commentsURL = `https://randopic.herokuapp.com/comments/`
-
-
 class Image {
 
     constructor(url, name){
