@@ -16,7 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let imagePost = new Image(result.url, result.name)
   })
 
-
+  let commentForm = document.querySelector('#comment_form')
+  let commentInput = document.querySelector('#comment_input')
+  commentForm.addEventListener('submit', function(e){
+    e.preventDefault()
+    let newComment = new Comment(commentInput.value)
+    commentInput.value = ""
+  })
 
 
 })
