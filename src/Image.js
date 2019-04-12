@@ -1,23 +1,29 @@
 class Image {
+  constructor(imgObject){
+    this.url = imgObject.url
+    this.name = imgObject.name
+    this.likes = imgObject.like_count
 
-    constructor(url, name){
-        this.div = document.createElement('div')
-        this.div.className = 'image_card'
+    this.div = document.createElement('div')
+    this.div.className = 'image_card'
 
-        const img = document.createElement('img')
-        img.src = url
+    const img = document.createElement('img')
+    img.src = this.url
 
-        const h4 = document.createElement('h4')
-        h4.append(name)
+    const h4 = document.createElement('h4')
+    h4.append(this.name)
 
-        this.div.append(
-            img,
-            h4
-        )
-    }
+    this.div.append(
+      img,
+      h4
+    )
+  }
 
-    render(){
-        return this.div
-    }
+  likesString (){
+    return (this.likes == 1 ? `${this.likes} like` : `${this.likes} likes`)
+  }
 
+  render(){
+    return this.div
+  }
 }

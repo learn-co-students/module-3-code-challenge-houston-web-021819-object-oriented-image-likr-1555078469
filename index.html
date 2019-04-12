@@ -19,23 +19,32 @@
     <div class="row" id="image_content">
       <div class="card col-md-4"></div>
       <div class="card col-md-4">
-            <div id="image_container" >
-              <!-- <img> for image goes here -->
-              <!-- <h4> for name goes here -->
-            </div>
-            <form id="comment_form">
-              <input id="comment_input" type="text" name="comment" placeholder="Add Comment"/>
-              <input type="submit" value="Submit"/>
-            </form>
-            <ul id="comments">
-                <!-- <li> for each comment goes here -->
-            </ul>
+        <div id="image_container" >
+          <!-- <img> for image goes here -->
+          <!-- <h4> for name goes here -->
+          <div id="likes" >
+            <p id="likes_text" > </p>
+            <button id="likes_button"> Like ♥ </button>
+            <!-- like button goes here-->
+          </div>
         </div>
+        <br>
+      </div>
       <div class="card col-md-4"></div>
+    </div>
+    <div class="row" id="comment_content">
+      <form id="comment_form">
+        <input id="comment_input" type="text" name="comment" placeholder="Add Comment"/>
+        <input type="submit" value="Submit"/>
+      </form>
+      <ul id="comments">
+          <!-- <li> for each comment goes here -->
+      </ul>
     </div>
   </div>
   <script type="text/javascript" src='src/Image.js'></script>
   <script type="text/javascript" src='src/Comment.js'></script>
   <script type="text/javascript" src='src/index.js'></script>
+  <script type="text/javascript" src='src/APIDriver.js'></script>
   </body>
 </html>

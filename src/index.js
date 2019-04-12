@@ -1,11 +1,17 @@
+const imageContainer = document.querySelector('#image_container')
+const commentList = document.querySelector('#comments')
+
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('%c DOM Content Loaded and Parsed!', 'color: magenta')
+  APIDriver.renderImage() //render on load
 
-  let imageId = 1 //Enter the id from the fetched image here
+  setInterval(function(){
+    APIDriver.renderImage()
+  }, 1000) //render every second from then on
 
-  const imageURL = `https://randopic.herokuapp.com/images/${imageId}`
+  const form = document.querySelector('#comment_form')
 
-  const commentsURL = `https://randopic.herokuapp.com/comments/`
-
-
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    Comment.renderNewComment()
+  })
 })
