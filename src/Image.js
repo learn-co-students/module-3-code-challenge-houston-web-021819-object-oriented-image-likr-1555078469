@@ -16,8 +16,10 @@ class Image {
         )
     }
 
+
+
     render(){
-        return this.div
+        document.body.append(this.div)
     }
 
 }
