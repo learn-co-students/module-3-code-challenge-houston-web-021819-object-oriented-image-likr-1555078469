@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const commentsURL = `https://randopic.herokuapp.com/comments/`
  
 function createComment(image, content){
-  console.log(content)
  fetch(commentsURL,{
    method: 'POST',
    headers:{
@@ -26,17 +25,17 @@ function createComment(image, content){
   fetch(imageURL)
   .then((res) =>res.json())
   .then((pic)=>{
-    let bigPic = new Image(pic.url,pic.name)
-    let comm =pic.comments
+    const comm =pic.comments
     comm.forEach(element => {
-      let firstComm = new Comment(element.content) 
+      const firstComm = new Comment(element.content) 
     });
+    const bigPic = new Image(pic.url,pic.name)
   })
 
   form.addEventListener('submit',(e) => {
     e.preventDefault()
-    let input = document.querySelector('#comment_input')
-    let newComm = new Comment(input.value)
+    const input = document.querySelector('#comment_input')
+    const newComm = new Comment(input.value)
     createComment(imageId,input.value)
     input.value = ''
   })
