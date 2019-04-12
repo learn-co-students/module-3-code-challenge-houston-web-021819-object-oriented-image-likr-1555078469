@@ -5,7 +5,7 @@ class Comment {
 
     this.li = document.createElement('li')
     this.li.className = `comment-${this.id}`
-    this.li.textContent = commentObj.content
+    this.li.textContent = this.content
   }
 
   render(){
