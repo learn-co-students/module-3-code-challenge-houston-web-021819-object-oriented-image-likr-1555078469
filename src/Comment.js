@@ -1,10 +1,10 @@
 class Comment {
     constructor(text, commentsURL, imageURL){
         this.text = text
-        this.postComment(this)
+        this.renderComment(this)
     }
 
-    postComment(comment){
+    renderComment(comment){
         let commentsBoard = document.querySelector('#comments')
         let newComment = document.createElement('li')
         newComment.innerText = comment.text
@@ -13,7 +13,6 @@ class Comment {
 
     //save comment then, after succesful save, create new instance and post
     static commentSave(commentsURL, text){
-        console.log(commentsURL)
         fetch(commentsURL, {
             method: 'POST',
             headers: {
@@ -26,8 +25,6 @@ class Comment {
             })
         })
         .then(function(res){
-            console.log("made it this far!")
-            console.log(res)
             let comment = new Comment(text)
         })
     }
