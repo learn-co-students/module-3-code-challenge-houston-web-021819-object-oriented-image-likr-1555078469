@@ -15,7 +15,6 @@ class Image {
             h4
         )
         this.render(this.div)
-
     }
 
     render(image){

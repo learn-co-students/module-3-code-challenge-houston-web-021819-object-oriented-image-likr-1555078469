@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('%c DOM Content Loaded and Parsed!', 'color: magenta')
 
-  let imageId = 1 //Enter the id from the fetched image here  https://randopic.herokuapp.com/images/2440
+  let imageId = 2440
 
-  const imageURL = `https://randopic.herokuapp.com/images/2440`
+  const imageURL = `https://randopic.herokuapp.com/images/${imageId}`
 
   const commentsURL = `https://randopic.herokuapp.com/comments/`
 
@@ -14,15 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   .then(function(result){
     let imagePost = new Image(result.url, result.name)
+    console.log(result.comments)
+    Comment.postComments(result.comments)
   })
 
   let commentForm = document.querySelector('#comment_form')
   let commentInput = document.querySelector('#comment_input')
   commentForm.addEventListener('submit', function(e){
     e.preventDefault()
-    let newComment = new Comment(commentInput.value)
+    let newComment = new Comment(commentInput.value, commentsURL)
     commentInput.value = ""
   })
-
 
 })
