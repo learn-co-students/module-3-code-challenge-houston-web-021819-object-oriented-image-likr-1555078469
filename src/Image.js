@@ -22,7 +22,6 @@ class Image {
 
     renderMyImage(){
         const imageContainer = document.querySelector("#image_container")
-        //header with myimage's name
         let myImageCard = this.render()
         imageContainer.append(myImageCard)
     }

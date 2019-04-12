@@ -2,29 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('%c DOM Content Loaded and Parsed!', 'color: magenta')
 
   let imageId = 2431 //Enter the id from the fetched image here
-
   const imageURL = `https://randopic.herokuapp.com/images/${imageId}`
 
-  const commentsURL = `https://randopic.herokuapp.com/comments/`
-
-  //fetch my image
-  fetch(imageURL)
+  fetch(imageURL)  //fetch my image
   .then((res)=> res.json())
-  .then(function(imageData) {
-
+  .then((imageData) => {
     let myImage = new Image(imageData.url, imageData.name)
-    //use Image instance method to render my image.
-    myImage.renderMyImage()
-    //use Comment static method to render comment for my image
-    Comment.renderComments()
-  })
+    myImage.renderMyImage()  //use Image instance method to render myImage.
+    Comment.renderComments()  //use Comment static method to render comments for my image
+    })
 
+  //add action for form.
   const form = document.querySelector("#comment_form")
+  const input = document.querySelector("#comment_input")
   form.addEventListener('submit', function(e){
     e.preventDefault()
-    let input = document.querySelector("#comment_input")
     let newComment = new Comment(input.value)
-    newComment.addComment()
+    newComment.addComment() //use Comment instance method to send newComment to server, add HTML element
   })
    
 })
