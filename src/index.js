@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return res.json()
   })
   .then(function(result){
-    console.log(result)
+    let board = document.querySelector('#image_container')
+    let image = document.createElement('img')
+    image.src = result.url
+    board.append(image)
   })
 
 
