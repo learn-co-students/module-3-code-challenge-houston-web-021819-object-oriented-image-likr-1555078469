@@ -14,13 +14,10 @@ class Image {
             img,
             h4
         )
-
-        Image.all.push(this)
     }
 
     render(){
-        let imageContainer = document.querySelector('#image_container')
-        imageContainer.append(this.div)
+        Image.container.append(this.div)
     }
 
     static create(imageURL){
@@ -30,13 +27,10 @@ class Image {
           let newImage = new Image(image.url, image.name)
 
           newImage.render()
-
           image.comments.forEach(comment => {
             let newComment = new Comment(comment)
             newComment.render()
           })
         })
     }
-
 }
-Image.all = []

@@ -16,23 +16,18 @@ class Comment{
       this.id,
       this.content
     )
-
-    Comment.all.push(this)
-
   }
 
   render(){
-    let commentSection = document.querySelector('#comments')
-    commentSection.append(this.li)
+    Comment.section.append(this.li)
   }
 
   static addComment(){
-    let commentForm = document.querySelector('#comment_form')
-    commentForm.addEventListener('submit', (e) => {
+    Comment.form.addEventListener('submit', (e) => {
         e.preventDefault()
         let commentTemplate = {
           image_id: imageId,
-          content: commentForm.comment.value
+          content: Comment.form.comment.value
         }
 
         fetch(commentsURL, {
@@ -46,6 +41,7 @@ class Comment{
       .then(comment => {
         let newComment = new Comment(comment)
         newComment.render()
+        Comment.form.comment.value = ""
       })
     })
   }
@@ -53,4 +49,3 @@ class Comment{
 
 
 }
-Comment.all = []
