@@ -37,16 +37,16 @@ class Comment{
 
         fetch(commentsURL, {
         method: 'POST',
-        body: JSON.stringify(commentTemplate),
         headers:{
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        }
-        }).then(res => res.json())
-
-        commentTemplate.id = parseInt(Comment.all[Comment.all.length -1].id.innerText) + 1
-        let newComment = new Comment(commentTemplate)
+        },
+        body: JSON.stringify(commentTemplate)
+      }).then(res => res.json())
+      .then(comment => {
+        let newComment = new Comment(comment)
         newComment.render()
+      })
     })
   }
 
