@@ -11,13 +11,20 @@ class Image {
         h4.append(name)
 
         this.div.append(
-            img,
+            img, 
             h4
         )
+        const imgContainer = document.querySelector('#image_container')
+        imgContainer.appendChild(this.div)
     }
-
-    render(){
-        return this.div
+    
+    static render=()=>{ 
+        fetch(imageURL)
+        .then(response=>response.json())
+        .then(img=>{
+              new Image(img.url, img.name) // instantiate img
+              Comment.render(img)//call display function
+        })  
     }
 
 }
